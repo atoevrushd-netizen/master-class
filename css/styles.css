@@ -678,7 +678,7 @@ body {
 /* ---------- Topics ---------- */
 
 .topics {
-  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  margin-top: clamp(2.5rem, 7vw, 4rem);
   padding: clamp(1.25rem, 3.5vw, 1.75rem) clamp(1.25rem, 3.5vw, 2rem);
   background: linear-gradient(
     145deg,
@@ -981,7 +981,7 @@ body {
 
   /* Topics: single column on phones */
   .topics {
-    margin-top: clamp(1.25rem, 3.5vw, 1.75rem);
+    margin-top: clamp(4rem, 12vw, 6rem);
     padding: 1.1rem 1rem;
   }
 
