@@ -675,6 +675,104 @@ body {
   font-weight: 400;
 }
 
+/* ---------- Topics ---------- */
+
+.topics {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  padding: clamp(1.25rem, 3.5vw, 1.75rem) clamp(1.25rem, 3.5vw, 2rem);
+  background: linear-gradient(
+    145deg,
+    rgba(13, 26, 61, 0.55) 0%,
+    rgba(8, 16, 42, 0.35) 100%
+  );
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.topics::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-bright),
+    rgba(79, 141, 255, 0.3),
+    transparent
+  );
+}
+
+.topics__heading {
+  margin: 0 0 clamp(1rem, 2.5vw, 1.25rem);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.topics__heading::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--accent-bright);
+  flex-shrink: 0;
+}
+
+.topics__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: topic-counter;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.topics__item {
+  counter-increment: topic-counter;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  font-size: clamp(0.8125rem, 1.8vw, 0.9rem);
+  font-weight: 400;
+  color: var(--text-soft);
+  line-height: 1.45;
+  border-bottom: 1px solid rgba(120, 160, 255, 0.07);
+  position: relative;
+}
+
+/* Right column items get left padding */
+.topics__item:nth-child(even) {
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(120, 160, 255, 0.07);
+}
+
+.topics__item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.topics__item::before {
+  content: counter(topic-counter, decimal-leading-zero);
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-bright);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  padding-top: 0.1em;
+  opacity: 0.85;
+}
+
 /* ---------- Footer ---------- */
 
 .footer {
@@ -879,6 +977,29 @@ body {
   .hero__subtitle {
     font-size: 0.9375rem;
     line-height: 1.58;
+  }
+
+  /* Topics: single column on phones */
+  .topics {
+    margin-top: clamp(1.25rem, 3.5vw, 1.75rem);
+    padding: 1.1rem 1rem;
+  }
+
+  .topics__list {
+    grid-template-columns: 1fr;
+  }
+
+  .topics__item:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .topics__item:nth-last-child(-n+2) {
+    border-bottom: 1px solid rgba(120, 160, 255, 0.07);
+  }
+
+  .topics__item:last-child {
+    border-bottom: none;
   }
 
   /* Speaker: portrait ratio on phones, capped height */

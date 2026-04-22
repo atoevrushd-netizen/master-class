@@ -127,6 +127,24 @@
     tl.from(".dates__connector", { opacity: 0, scaleX: 0, duration: 0.6, ease: easeSoft }, 0.88);
   }
 
+  /* ---------- Topics stagger animation ---------- */
+  var topicsEl = document.querySelector(".topics");
+  if (topicsEl) {
+    gsap.from(".topics__heading", {
+      scrollTrigger: { trigger: topicsEl, start: "top 88%", toggleActions: "play none none reverse" },
+      opacity: 0, x: -16, duration: 0.6, ease: easeSoft,
+    });
+    gsap.from(".topics__item", {
+      scrollTrigger: { trigger: topicsEl, start: "top 85%", toggleActions: "play none none reverse" },
+      opacity: 0,
+      y: isMobile ? 12 : 18,
+      duration: isMobile ? 0.4 : 0.55,
+      stagger: isMobile ? 0.05 : 0.07,
+      ease: easeSoft,
+      delay: 0.1,
+    });
+  }
+
   /* ---------- Scroll-triggered footer ---------- */
   gsap.utils.toArray(".footer [data-anim='fade-up']").forEach(function (el) {
     gsap.from(el, {
