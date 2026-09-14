@@ -1,97 +1,194 @@
 (function () {
   var STORAGE_KEY = "mc_lang";
+  var DEFAULT_LANG = "tg";
   var WA_NUMBER = "992918175700";
 
   var I18N = {
-    ru: {
-      meta_desc: "Мастер-класс 13–14 июня — Сайдахтам Атоев. Приглашение на закрытый двухдневный интенсив.",
-      doc_title: "Мастер-класс — 13–14 июня | Сайдахтам Атоев",
-      lang_aria: "Язык интерфейса",
-      top_mark: "эксклюзивное событие",
-      hero_kicker: "Приглашаем вас",
-      hero_title: "Мастер-класс",
-      hero_subtitle:
-        "Интенсивный двухдневный формат для тех, кто выстраивает результат на серьёзном уровне. Ведёт практикующий эксперт.",
-      month_june: "июня",
-      day1_note: "первый день",
-      day2_note: "второй день",
-      cta_label: "Забронировать место",
-      cta_aria: "Написать в WhatsApp, чтобы забронировать место",
-      cta_wa_message: "Здравствуйте! Хочу забронировать место на мастер-класс.",
-      cta_hint: "Количество мест ограничено",
-      speaker_label: "Спикер",
-      speaker_role: "Специалист по продажам и построению систем",
-      topics_heading: "Темы мастер-класса",
-      topic_1:  "Правильный выбор ниши",
-      topic_2:  "Построение бизнес-модели",
-      topic_3:  "Стратегия и декомпозиция целей",
-      topic_4:  "Маркетинг и построение воронки продаж",
-      topic_5:  "Воронка найма и условия сотрудничества",
-      topic_6:  "Система KPI, мотивация и адаптация сотрудников",
-      topic_7:  "Финансовая модель и финансовый план",
-      topic_8:  "Организационная политика и оргструктура",
-      topic_9:  "Построение отдела продаж",
-      topic_10: "Систематизация компании",
-      details_heading: "Формат",
-      detail_1: "Практика и разбор кейсов в закрытой группе",
-      detail_2: "Материалы и доступ к записи по итогам",
-      detail_3: "Сертификат участника",
-      footer_text: "Организатор свяжется для подтверждения",
-    },
     tg: {
-      meta_desc:
-        "Мастер-класс 13–14 июн — Сайдахтам Атоев. Даъват ба интенсивии дурузаи пӯшида.",
-      doc_title: "Мастер-класс — 13–14 июн | Сайдахтам Атоев",
-      lang_aria: "Забони интерфейс",
-      top_mark: "Ҳодисаи махсус",
+      doc_title: "Мастер-класс — 12–13 декабр | Сайдахтам Атоев",
+      meta_desc: "Мастер-класси дурӯза бо Сайдахтам Атоев, 12–13 декабр. Рӯзи 1 — шахсият ва роҳбарӣ, рӯзи 2 — сохтани тиҷорат ҳамчун система.",
+      lang_aria: "Забони сомона",
+      dates_aria: "Санаҳо",
+
+      top_mark: "Чорабинии махсус",
       hero_kicker: "Шуморо даъват менамоем",
       hero_title: "Мастер-класс",
-      hero_subtitle:
-        "Формати интенсивии дуруза барои онҳое, ки натиҷаро дар сатҳи ҷиддӣ месозанд.",
-      month_june: "июн",
-      day1_note: "рӯзи якум",
-      day2_note: "рӯзи дуюм",
+      hero_subtitle: "Ду рӯзи шадид: аввал — тағйири шумо ҳамчун шахс ва роҳбар, баъд — сохтани бизнес ҳамчун система.",
+      month_dec: "декабр",
+      day1_short: "Рӯзи 1 · Роҳбар",
+      day2_short: "Рӯзи 2 · Тиҷорат",
+      time_note: "ҳар ду рӯз",
+
       cta_label: "Ҷойро брон кардан",
-      cta_aria: "Барои брон кардани ҷой ба WhatsApp нависед",
-      cta_wa_message: "Салом! Мехоҳам ҷойро дар мастер-класс брон кунам.",
+      cta_aria: "Ҷойро брон кардан — дар WhatsApp кушода мешавад",
+      cta_wa_message: "Салом! Мехоҳам дар мастер-класс 12–13 декабр ҷой брон кунам.",
       cta_hint: "Шумораи ҷойҳо маҳдуд аст",
-      speaker_label: "Эксперт",
-      speaker_role: "Муттаҳассиси фурӯш ва системасозӣ",
-      topics_heading: "Мавзуъҳои мастер-класс",
-      topic_1:  "Интихоби дурусти ниша",
-      topic_2:  "Сохтани бизнес-модел",
-      topic_3:  "Стратегия ва декомпозиция",
-      topic_4:  "Маркетинг ва сохтани воронкаи фурӯш",
-      topic_5:  "Воронкаи найм ва шартҳои ҳамкорӣ",
-      topic_6:  "Системаи KPI, мотивация ва адаптация",
-      topic_7:  "Фин-модел ва фин-план",
-      topic_8:  "Орг-политика ва орг-структура",
-      topic_9:  "Сохтани шуъбаи фурӯш",
-      topic_10: "Системакунонии ширкат",
-      details_heading: "Формат",
-      detail_1: "Амалиёт ва таҳлили намунаҳо дар гурӯҳи пӯшида",
-      detail_2: "Моддаҳо ва дастрасӣ ба сабт пас аз чорабинӣ",
-      detail_3: "Гувоҳиномаи иштирокчӣ",
-      footer_text: "Ташкилкунанда барои тасдиқ бо шумо тамос мегирад",
+      cta_hint_wa: "сабт тавассути WhatsApp",
+
+      speaker_label: "Спикер",
+      speaker_role: "Мутахассиси фурӯш ва сохтани системаҳои бизнес",
+
+      program_kicker: "Барнома",
+      program_title: "Аввал — роҳбар, баъд — тиҷорат",
+
+      day1_date: "12 декабр",
+      day1_title: "Шахсият ва роҳбарӣ",
+      d1_1_t: "Кушоиш ва диагностика",
+      d1_1_r: "Мушкили асосии худро муайян мекунед",
+      d1_2_t: "Шахсият: ман кистам?",
+      d1_2_r: "Сатҳи ҳозираи шахсият, қарорҳо ва масъулият",
+      d1_3_t: "Падар ва модар — барномаи дохилии инсон",
+      d1_3_r: "Таъсири кӯдакӣ ба пул, қарорҳо, муносибат ва бизнес",
+      d1_4_t: "Сифатҳои роҳбари муваффақ",
+      d1_4_r: "Масъулият, интизом, ҷасорат ва тафаккури стратегӣ",
+      d1_5_t: "Owner Mindset — аз соҳибкор то соҳиби система",
+      d1_5_r: "«Ман ҳама корро мекунам» → «Система кор мекунад»",
+      d1_6_t: "Амалия ва нақшаи шахсӣ",
+      d1_6_r: "3 тағйироти асосии худро муайян мекунед",
+      d1_quote: "«То худатон тағйир наёбед, бизнесатон тағйир намеёбад.»",
+
+      day2_date: "13 декабр",
+      day2_title: "Тиҷорати замонавӣ аз А то Я",
+      d2_1_t: "Ҷамъбасти рӯзи 1",
+      d2_1_r: "Мустаҳкам кардани натиҷаҳои рӯзи аввал",
+      d2_2_t: "Модели бизнес",
+      d2_2_r: "Бизнеси шумо чӣ гуна пул месозад",
+      d2_3_t: "Системаи маркетинг",
+      d2_3_r: "Мизоҷ аз куҷо меояд ва лид чӣ гуна сохта мешавад",
+      d2_4_t: "Системаи фурӯш",
+      d2_4_r: "Лид → мизоҷ → фармоиш → пардохт → такрор",
+      d2_5_t: "Даста ва сохтори ташкилӣ",
+      d2_5_r: "Кӣ чӣ кор мекунад ва чӣ гуна аз корҳои оперативӣ баромадан",
+      d2_6_t: "Системаи молиявӣ",
+      d2_6_r: "Даромад → фоидаи умумӣ → фоидаи соф → ҷараёни пул",
+      d2_7_t: "KPI ва назорат",
+      d2_7_r: "Идораи ҳаррӯзаи бизнес бо рақамҳо",
+      d2_8_t: "Харитаи бизнес аз А то Я",
+      d2_8_r: "Харитаи системаи бизнеси худро месозед",
+      d2_quote: "«Мақсад бештар кор кардан нест. Мақсад — бизнесе, ки бе шумо кор мекунад.»",
+
+      breaks_note: "Ҳар ду рӯз бо танаффусҳои қаҳва ва хӯроки нисфирӯзӣ",
+      outcome_label: "Натиҷаи ду рӯз",
+      out_1: "Хаос",
+      out_2: "Тартиб",
+      out_3: "Система",
+      out_4: "Назорат",
+      out_5: "Рушд",
+
+      final_title: "12–13 декабр · Мастер-класс",
+      final_text: "Шумораи ҷойҳо маҳдуд аст. Ба WhatsApp нависед — ташкилкунанда иштироки шуморо тасдиқ мекунад.",
+      footer_brand: "Мастер-класс",
+
+      sticky_date: "12–13 декабр",
+      sticky_hint: "Ҷойҳо маҳдуд",
+      sticky_cta: "Брон кардан",
+    },
+
+    ru: {
+      doc_title: "Мастер-класс — 12–13 декабря | Сайдахтам Атоев",
+      meta_desc: "Двухдневный мастер-класс Сайдахтама Атоева, 12–13 декабря. День 1 — личность и лидерство, день 2 — бизнес как система.",
+      lang_aria: "Язык сайта",
+      dates_aria: "Даты",
+
+      top_mark: "Эксклюзивное событие",
+      hero_kicker: "Приглашаем вас",
+      hero_title: "Мастер-класс",
+      hero_subtitle: "Два интенсивных дня: сначала — ваше изменение как личности и руководителя, затем — построение бизнеса как системы.",
+      month_dec: "декабря",
+      day1_short: "День 1 · Лидер",
+      day2_short: "День 2 · Бизнес",
+      time_note: "оба дня",
+
+      cta_label: "Забронировать место",
+      cta_aria: "Забронировать место — откроется WhatsApp",
+      cta_wa_message: "Здравствуйте! Хочу забронировать место на мастер-класс 12–13 декабря.",
+      cta_hint: "Количество мест ограничено",
+      cta_hint_wa: "запись через WhatsApp",
+
+      speaker_label: "Спикер",
+      speaker_role: "Эксперт по продажам и построению бизнес-систем",
+
+      program_kicker: "Программа",
+      program_title: "Сначала — лидер, потом — бизнес",
+
+      day1_date: "12 декабря",
+      day1_title: "Личность и лидерство",
+      d1_1_t: "Открытие и диагностика",
+      d1_1_r: "Определяете свою главную проблему",
+      d1_2_t: "Личность: кто я?",
+      d1_2_r: "Текущий уровень личности, решений и ответственности",
+      d1_3_t: "Отец и мать — внутренняя программа человека",
+      d1_3_r: "Как детство влияет на деньги, решения, отношения и бизнес",
+      d1_4_t: "Качества успешного руководителя",
+      d1_4_r: "Ответственность, дисциплина, смелость и стратегическое мышление",
+      d1_5_t: "Owner Mindset — от предпринимателя к владельцу системы",
+      d1_5_r: "«Я делаю всё сам» → «Работает система»",
+      d1_6_t: "Практика и личный план",
+      d1_6_r: "Определяете 3 ключевых изменения для себя",
+      d1_quote: "«Пока не изменитесь вы, не изменится и ваш бизнес.»",
+
+      day2_date: "13 декабря",
+      day2_title: "Современный бизнес от А до Я",
+      d2_1_t: "Итоги первого дня",
+      d2_1_r: "Закрепляем результаты первого дня",
+      d2_2_t: "Бизнес-модель",
+      d2_2_r: "Как ваш бизнес зарабатывает деньги",
+      d2_3_t: "Система маркетинга",
+      d2_3_r: "Откуда приходят клиенты и как создаются лиды",
+      d2_4_t: "Система продаж",
+      d2_4_r: "Лид → клиент → заказ → оплата → повтор",
+      d2_5_t: "Команда и оргструктура",
+      d2_5_r: "Кто за что отвечает и как выйти из операционки",
+      d2_6_t: "Финансовая система",
+      d2_6_r: "Выручка → валовая прибыль → чистая прибыль → денежный поток",
+      d2_7_t: "KPI и контроль",
+      d2_7_r: "Ежедневное управление бизнесом по цифрам",
+      d2_8_t: "Карта бизнеса от А до Я",
+      d2_8_r: "Строите карту системы своего бизнеса",
+      d2_quote: "«Цель не в том, чтобы работать больше. Цель — бизнес, который работает без вас.»",
+
+      breaks_note: "Оба дня — с кофе-брейками и обедом",
+      outcome_label: "Итог двух дней",
+      out_1: "Хаос",
+      out_2: "Порядок",
+      out_3: "Система",
+      out_4: "Контроль",
+      out_5: "Рост",
+
+      final_title: "12–13 декабря · Мастер-класс",
+      final_text: "Количество мест ограничено. Напишите в WhatsApp — организатор подтвердит ваше участие.",
+      footer_brand: "Мастер-класс",
+
+      sticky_date: "12–13 декабря",
+      sticky_hint: "Места ограничены",
+      sticky_cta: "Забронировать",
     },
   };
 
-  function applyLang(lang) {
-    var t = I18N[lang] || I18N.ru;
-    document.documentElement.lang = lang === "tg" ? "tg" : "ru";
-    document.documentElement.setAttribute("data-lang", lang);
+  function applyLang(lang, persist) {
+    if (!I18N[lang]) lang = DEFAULT_LANG;
+    var t = I18N[lang];
+    var root = document.documentElement;
+    root.lang = lang;
+    root.setAttribute("data-lang", lang);
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n");
-      if (t[key] !== undefined) el.textContent = t[key];
+      var value = t[el.getAttribute("data-i18n")];
+      if (value !== undefined) el.textContent = value;
     });
 
-    var meta = document.querySelector('meta[name="description"]');
-    if (meta && t.meta_desc) meta.setAttribute("content", t.meta_desc);
-    if (t.doc_title) document.title = t.doc_title;
+    /* data-i18n-attr="aria-label:key;title:key2" */
+    document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
+      el.getAttribute("data-i18n-attr").split(";").forEach(function (pair) {
+        var parts = pair.split(":");
+        var value = t[(parts[1] || "").trim()];
+        if (parts[0] && value !== undefined) el.setAttribute(parts[0].trim(), value);
+      });
+    });
 
-    var group = document.querySelector(".lang-switch");
-    if (group && t.lang_aria) group.setAttribute("aria-label", t.lang_aria);
+    document.title = t.doc_title;
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", t.meta_desc);
 
     document.querySelectorAll("[data-set-lang]").forEach(function (btn) {
       var active = btn.getAttribute("data-set-lang") === lang;
@@ -99,41 +196,32 @@
       btn.setAttribute("aria-pressed", active ? "true" : "false");
     });
 
-    var cta = document.querySelector("a.cta");
-    if (cta) {
-      var msg = t.cta_wa_message || "";
-      var waUrl = "https://wa.me/" + WA_NUMBER + (msg ? "?text=" + encodeURIComponent(msg) : "");
+    var waUrl = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(t.cta_wa_message);
+    document.querySelectorAll("a[data-cta]").forEach(function (cta) {
       cta.setAttribute("href", waUrl);
-      if (t.cta_aria) cta.setAttribute("aria-label", t.cta_aria);
-    }
-
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch (e) {}
-
-    if (typeof window.ScrollTrigger !== "undefined") {
-      window.ScrollTrigger.refresh();
-    }
-  }
-
-  function init() {
-    var lang = "tg";
-    try {
-      lang = localStorage.getItem(STORAGE_KEY) || "tg";
-    } catch (e) {}
-    if (lang !== "tg" && lang !== "ru") lang = "tg";
-    applyLang(lang);
-
-    document.querySelectorAll("[data-set-lang]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        applyLang(btn.getAttribute("data-set-lang"));
-      });
+      cta.setAttribute("aria-label", t.cta_aria);
     });
+
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
+  function initialLang() {
+    var fromUrl = new URLSearchParams(window.location.search).get("lang");
+    if (fromUrl && I18N[fromUrl]) return fromUrl;
+    try {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && I18N[stored]) return stored;
+    } catch (e) {}
+    return DEFAULT_LANG;
   }
+
+  applyLang(initialLang(), false);
+
+  document.querySelectorAll("[data-set-lang]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      applyLang(btn.getAttribute("data-set-lang"), true);
+    });
+  });
 })();
