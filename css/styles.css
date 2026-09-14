@@ -474,40 +474,75 @@ ol, ul {
   justify-self: end;
   width: 100%;
   max-width: 440px;
+}
+
+/* The card is the moving "window" (tilt + parallax are applied by js/parallax.js) */
+.speaker__card {
+  position: relative;
   padding: 10px;
   background: linear-gradient(160deg, rgba(20, 36, 78, 0.6), rgba(8, 16, 38, 0.4));
   border: 1px solid var(--border);
   border-radius: calc(var(--radius-lg) + 6px);
   box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  transform-origin: 50% 50%;
+  transition: box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
+}
+
+.speaker__card.is-hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 50px 90px -30px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(79, 141, 255, 0.08);
 }
 
 .speaker__photo-wrap {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  isolation: isolate;
   border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, #0d1c44, #081026);
+  /* One clip for the whole stack: moving (composited) layers and the overlay get
+     identical rounded edges, so no light fringe shows along the corners */
+  clip-path: inset(0 round var(--radius-lg));
+  background: var(--bg);
 }
 
 .speaker__photo-wrap::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(to top, rgba(5, 10, 24, 0.95) 0%, rgba(5, 10, 24, 0.82) 28%, rgba(5, 10, 24, 0.42) 46%, transparent 64%);
   pointer-events: none;
 }
 
-.speaker__photo-wrap picture {
-  display: block;
-  width: 100%;
-  height: 100%;
+/* Hairline inner edge that hides any anti-aliasing seam between the photo and the card */
+.speaker__photo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(5, 10, 24, 0.85);
+  pointer-events: none;
 }
 
-.speaker__photo {
+/* Background + character layers overscan the frame by 12% on every side,
+   so parallax offsets never reveal an edge. Both share the same box and crop. */
+.speaker__layer {
+  position: absolute;
+  inset: -12%;
+  display: block;
+}
+
+.speaker__layer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+}
+
+.speaker__card.is-motion .speaker__layer,
+.speaker__card.is-motion {
+  will-change: transform;
 }
 
 .speaker__info {
@@ -515,7 +550,7 @@ ol, ul {
   left: 10px;
   right: 10px;
   bottom: 10px;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
