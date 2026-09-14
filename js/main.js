@@ -22,9 +22,20 @@
 
     items.forEach(function (el) { io.observe(el); });
 
-    /* Safety net: never leave content hidden */
-    setTimeout(showAll, 2500);
+    /* Safety net: reveal anything already in or above the viewport */
+    setTimeout(function () {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      items.forEach(function (el) {
+        if (!el.classList.contains("is-visible") && el.getBoundingClientRect().top < vh) {
+          el.classList.add("is-visible");
+          io.unobserve(el);
+        }
+      });
+    }, 2500);
   }
+
+  /* Tells the inline head script that reveals are handled */
+  window.__mcReveal = true;
 
   /* ---------- Sticky CTA (mobile): visible when no other CTA is on screen ---------- */
   var sticky = document.querySelector("[data-sticky-cta]");

@@ -13,7 +13,7 @@
       top_mark: "Чорабинии махсус",
       hero_kicker: "Шуморо даъват менамоем",
       hero_title: "Мастер-класс",
-      hero_subtitle: "Рӯзи аввал — тағйири шумо ҳамчун шахс ва роҳбар, рӯзи дуюм — сохтани бизнес ҳамчун система.",
+      hero_subtitle: "Рӯзи аввал — тағйири шумо ҳамчун шахс ва роҳбар, рӯзи дуюм — сохтани бизнес ҳамчун система.",
       month_dec: "декабр",
       day1_short: "Рӯзи 1 · Роҳбар",
       day2_short: "Рӯзи 2 · Тиҷорат",
@@ -29,7 +29,7 @@
       speaker_role: "Коршиноси фурӯш ва сохтани системаҳои бизнес",
 
       program_kicker: "Барнома",
-      program_title: "Аввал — роҳбар, баъд — тиҷорат",
+      program_title: "Аввал — роҳбар, баъд — тиҷорат",
 
       day1_date: "12 декабр",
       day1_title: "Шахсият ва роҳбарӣ",
@@ -37,11 +37,11 @@
       d1_1_r: "Мушкили асосии худро муайян мекунед",
       d1_2_t: "Шахсият: ман кистам?",
       d1_2_r: "Сатҳи ҳозираи шахсият, қарорҳо ва масъулият",
-      d1_3_t: "Падар ва модар — барномаи дохилии инсон",
+      d1_3_t: "Падар ва модар — барномаи дохилии инсон",
       d1_3_r: "Таъсири муҳити кӯдакӣ ба пул, қарорҳо, муносибат ва бизнес",
       d1_4_t: "Сифатҳои роҳбари муваффақ",
       d1_4_r: "Масъулият, интизом, қароргирӣ, ҷасорат, назорат ва тафаккури стратегӣ",
-      d1_5_t: "Owner Mindset — аз соҳибкор то соҳиби система",
+      d1_5_t: "Owner Mindset — аз соҳибкор то соҳиби система",
       d1_5_r: "«Ҳама корро худам мекунам» → «Система кор мекунад»",
       d1_6_t: "Амалия ва нақшаи шахсӣ",
       d1_6_r: "3 тағйири асосии худро муайян мекунед",
@@ -75,8 +75,7 @@
       out_4: "Назорат",
       out_5: "Рушд",
 
-      final_title: "12–13 декабр · Мастер-класс",
-      final_text: "Шумораи ҷойҳо маҳдуд аст. Ба WhatsApp нависед — ташкилкунанда иштироки шуморо тасдиқ мекунад.",
+      final_text: "Шумораи ҷойҳо маҳдуд аст. Ба WhatsApp нависед — ташкилкунанда иштироки шуморо тасдиқ мекунад.",
       footer_brand: "Мастер-класс",
 
       sticky_date: "12–13 декабр",
@@ -155,7 +154,6 @@
       out_4: "Контроль",
       out_5: "Рост",
 
-      final_title: "12–13 декабря · Мастер-класс",
       final_text: "Количество мест ограничено. Напишите в WhatsApp — организатор подтвердит ваше участие.",
       footer_brand: "Мастер-класс",
 
@@ -165,8 +163,12 @@
     },
   };
 
+  function hasLang(lang) {
+    return typeof lang === "string" && Object.prototype.hasOwnProperty.call(I18N, lang);
+  }
+
   function applyLang(lang, persist) {
-    if (!I18N[lang]) lang = DEFAULT_LANG;
+    if (!hasLang(lang)) lang = DEFAULT_LANG;
     var t = I18N[lang];
     var root = document.documentElement;
     root.lang = lang;
@@ -208,11 +210,11 @@
   }
 
   function initialLang() {
-    var fromUrl = new URLSearchParams(window.location.search).get("lang");
-    if (fromUrl && I18N[fromUrl]) return fromUrl;
+    var fromUrl = (new URLSearchParams(window.location.search).get("lang") || "").toLowerCase();
+    if (hasLang(fromUrl)) return fromUrl;
     try {
       var stored = localStorage.getItem(STORAGE_KEY);
-      if (stored && I18N[stored]) return stored;
+      if (hasLang(stored)) return stored;
     } catch (e) {}
     return DEFAULT_LANG;
   }
@@ -221,7 +223,16 @@
 
   document.querySelectorAll("[data-set-lang]").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      applyLang(btn.getAttribute("data-set-lang"), true);
+      var lang = btn.getAttribute("data-set-lang");
+      applyLang(lang, true);
+      /* Keep an explicit ?lang= in the URL in sync with the choice */
+      try {
+        var url = new URL(window.location.href);
+        if (url.searchParams.has("lang")) {
+          url.searchParams.set("lang", lang);
+          history.replaceState(null, "", url.toString());
+        }
+      } catch (e) {}
     });
   });
 })();
